@@ -1,3 +1,4 @@
+import FeedbackCard from "@/components/FeedbackCard";
 import styles from "@/styles/home.module.scss";
 
 interface Comment {
@@ -8,7 +9,7 @@ interface Comment {
     replies: Comment[];
 }
 
-interface Feedback {
+export interface Feedback {
     _id: string;
     title: string;
     description: string;
@@ -38,10 +39,7 @@ export default async function Home() {
                 </header>
                 <main>
                     {feedbacks.map((fbck) => (
-                        <div>
-                            <h2>{fbck.title}</h2>
-                            <p>{fbck.description}</p>
-                        </div>
+                        <FeedbackCard feedback={fbck} />
                     ))}
                 </main>
             </section>

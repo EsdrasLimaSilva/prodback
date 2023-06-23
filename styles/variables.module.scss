@@ -3,7 +3,15 @@ $white: #ffffff;
 $blue: #2c6ce4;
 $purple: #a017a0;
 $pink: #eb3b58;
-$dark-purbple: #0f0042;
+$dark-purple: #0f0042;
 $transparent: #22222240;
 $shadow-sm: 0px 1px 2px $transparent;
 $radius-sm: 8px;
+
+@mixin FLEX($direction, $jf-content, $al-items, $gap: 4px) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $jf-content;
+    align-items: $al-items;
+    gap: $gap;
+}

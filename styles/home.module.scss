@@ -3,9 +3,10 @@
 .header {
     background-image: linear-gradient(90deg, $blue, $purple, $pink);
     color: $white;
-    padding: 56px 16px 24px 16px;
+    padding: 56px 16px 0px 16px;
     border-radius: $radius-sm;
     box-shadow: $shadow-sm;
+    height: 150px;
 }
 
 .mainContainer {
@@ -27,14 +28,35 @@
 
 .feedSection {
     header {
-        background: $dark-purbple;
+        background: $dark-purple;
         padding: 8px 24px;
         border-radius: $radius-sm;
         color: $white;
         font-weight: bold;
+        margin-bottom: 8px;
 
         h2 {
             font-weight: bold;
         }
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+.feedbackCard {
+    @include FLEX(column, center, flex-start);
+    background-color: $white;
+    padding: 24px 32px;
+    border-radius: $radius-sm;
+    box-shadow: $shadow-sm;
+
+    h2 {
+        font-weight: bold;
+        color: $dark-purple;
+        font-size: 1.12rem;
     }
 }
