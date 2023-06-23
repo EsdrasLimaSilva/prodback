@@ -1,0 +1,40 @@
+@import "./variables.module.scss";
+
+.header {
+    background-image: linear-gradient(90deg, $blue, $purple, $pink);
+    color: $white;
+    padding: 56px 16px 24px 16px;
+    border-radius: $radius-sm;
+    box-shadow: $shadow-sm;
+}
+
+.mainContainer {
+    padding: 32px 0;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    max-width: 900px;
+    margin: 0 auto;
+    gap: 8px;
+
+    h1 {
+        font-size: 1.3rem;
+    }
+    h2 {
+        font-size: 1rem;
+        font-weight: normal;
+    }
+}
+
+.feedSection {
+    header {
+        background: $dark-purbple;
+        padding: 8px 24px;
+        border-radius: $radius-sm;
+        color: $white;
+        font-weight: bold;
+
+        h2 {
+            font-weight: bold;
+        }
+    }
+}
