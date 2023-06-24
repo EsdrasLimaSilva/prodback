@@ -3,7 +3,7 @@ import styles from "@/styles/home.module.scss";
 import { Feedback } from "./api/route";
 
 export default async function Home() {
-    const response = await fetch("http://localhost:5000", {
+    const response = await fetch("http://localhost:3000", {
         next: { revalidate: 60 },
     });
     const feedbacks: Feedback[] = await response.json();
