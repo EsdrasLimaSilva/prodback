@@ -1,4 +1,5 @@
 import "@/styles/globals.scss";
+import ReduxProvider from "./redux/prodvider";
 
 export const metadata = {
     title: "Prodback",
@@ -12,7 +13,9 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body>{children}</body>
+            <body>
+                <ReduxProvider>{children}</ReduxProvider>
+            </body>
         </html>
     );
 }
