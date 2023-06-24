@@ -1,18 +1,52 @@
 @import "./variables.module.scss";
 
 .header {
+    @include FLEX(column, flex-start, center, 24px);
+    position: relative;
+}
+
+.logo {
     background-image: linear-gradient(90deg, $blue, $purple, $pink);
     border-radius: $radius-sm;
     box-shadow: $shadow-sm;
     color: $white;
     height: 150px;
     padding: 56px 16px 0px 16px;
+    width: 100%;
+}
+
+.menuCateogories {
+    padding: 16px;
+    background-color: $white;
+    border-radius: $radius-sm;
+    width: 100%;
+    box-shadow: $shadow-sm;
+
+    ul {
+        @include FLEX(row, flex-start, center, 8px);
+        flex-wrap: wrap;
+        list-style: none;
+
+        li {
+            padding: 8px 16px;
+            background-color: $light-blue;
+            color: $dark-blue;
+            font-weight: bold;
+            border-radius: $radius-sm;
+            cursor: pointer;
+        }
+
+        .tagActive {
+            background-color: $purple;
+            color: $white;
+        }
+    }
 }
 
 .mainContainer {
     display: grid;
-    gap: 8px;
-    grid-template-columns: 250px 1fr;
+    gap: 32px;
+    grid-template-columns: 230px 1fr;
     margin: 0 auto;
     max-width: 900px;
     padding: 32px 0;
@@ -27,6 +61,10 @@
 }
 
 .feedSection {
+    max-height: 90vh;
+    overflow: auto;
+    padding: 0px 8px 24px 8px;
+
     header {
         background: $dark-purple;
         border-radius: $radius-sm;
