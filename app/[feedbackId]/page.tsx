@@ -10,7 +10,8 @@ export default async function InnerPage({
     params: { feedbackId: string };
 }) {
     const response = await fetch(
-        `http://localhost:3000/api/feedbacks?feedbackId=${params.feedbackId}`
+        `http://localhost:3000/api/feedbacks?feedbackId=${params.feedbackId}`,
+        { next: { revalidate: 60 } }
     );
     const feedback: Feedbck[] = await response.json();
 

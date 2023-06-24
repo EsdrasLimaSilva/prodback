@@ -46,3 +46,13 @@
         line-height: 28px;
     }
 }
+
+.replyCard {
+    @extend .commentCard;
+    border: none;
+    padding: 24px 0;
+
+    strong {
+        color: $purple;
+    }
+}

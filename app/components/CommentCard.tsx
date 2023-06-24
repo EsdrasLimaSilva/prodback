@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Comment } from "../page";
 
 import styles from "@/styles/innerpage.module.scss";
+import ReplyCard from "./ReplyCard";
 
 export default function CommentCard({ comment }: { comment: Comment }) {
     return (
@@ -22,6 +23,12 @@ export default function CommentCard({ comment }: { comment: Comment }) {
                 </h2>
                 <h3>{comment.username}</h3>
                 <p>{comment.content}</p>
+
+                <div>
+                    {comment.replies.map((reply) => (
+                        <ReplyCard reply={reply} />
+                    ))}
+                </div>
             </span>
         </div>
     );
