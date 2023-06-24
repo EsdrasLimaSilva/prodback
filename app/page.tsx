@@ -1,25 +1,9 @@
-import FeedbackCard from "@/components/FeedbackCard";
+import FeedbackCard from "@/app/components/FeedbackCard";
 import styles from "@/styles/home.module.scss";
-
-interface Comment {
-    id: string;
-    content: string;
-    username: string;
-    imageurl: string;
-    replies: Comment[];
-}
-
-export interface Feedback {
-    _id: string;
-    title: string;
-    description: string;
-    tags: string[];
-    comments: Comment[];
-    ups: number;
-}
+import { Feedback } from "./api/route";
 
 export default async function Home() {
-    const response = await fetch("http://localhost:5000", {
+    const response = await fetch("http://localhost:3000/api", {
         next: { revalidate: 60 },
     });
     const feedbacks: Feedback[] = await response.json();
@@ -38,9 +22,11 @@ export default async function Home() {
                     <h2>6 suggestions</h2>
                 </header>
                 <main>
-                    {feedbacks.map((fbck) => (
-                        <FeedbackCard feedback={fbck} />
-                    ))}
+                    {feedbacks.map((fbck) => {
+                        const feed = { ...fbck, _id: String(fbck._id) };
+
+                        return <FeedbackCard feedback={feed} />;
+                    })}
                 </main>
             </section>
         </main>
