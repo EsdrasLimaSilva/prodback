@@ -1,10 +1,29 @@
 import FeedbackCard from "@/app/components/FeedbackCard";
 import styles from "@/styles/home.module.scss";
-import { Feedback } from "./api/route";
 import MenuTags from "./components/MenuTags";
+import { ObjectId } from "mongodb";
+
+export interface Comment {
+    id: string;
+    content: string;
+    username: string;
+    imageurl: string;
+    replies: Comment[];
+}
+
+export interface Feedback {
+    _id: ObjectId;
+    title: string;
+    description: string;
+    tags: string[];
+    comments: Comment[];
+    ups: number;
+}
 
 export default async function Home() {
-    const response = await fetch("http://localhost:3000/api");
+    const response = await fetch("http://localhost:3000/api", {
+        cache: "no-store",
+    });
     const feedbacks: Feedback[] = await response.json();
 
     return (

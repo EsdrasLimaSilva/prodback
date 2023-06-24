@@ -34,7 +34,9 @@ const FeedbackCard = ({ feedback }: { feedback: Props }) => {
                 <p>{feedback.description}</p>
                 <span>
                     {feedback.tags.map((tag) => (
-                        <span className={styles.tag}>{tag}</span>
+                        <span key={tag} className={styles.tag}>
+                            {tag}
+                        </span>
                     ))}
                 </span>
             </span>

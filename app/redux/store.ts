@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import tagReducer from "./slices/tagSlice";
 
 const store = configureStore({
-    reducer: {},
+    reducer: {
+        tags: tagReducer,
+    },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
