@@ -1,22 +1,6 @@
 import FeedbackCard from "@/components/FeedbackCard";
 import styles from "@/styles/home.module.scss";
-
-interface Comment {
-    id: string;
-    content: string;
-    username: string;
-    imageurl: string;
-    replies: Comment[];
-}
-
-export interface Feedback {
-    _id: string;
-    title: string;
-    description: string;
-    tags: string[];
-    comments: Comment[];
-    ups: number;
-}
+import { Feedback } from "./api/route";
 
 export default async function Home() {
     const response = await fetch("http://localhost:5000", {
