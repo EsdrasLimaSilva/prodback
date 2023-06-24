@@ -40,8 +40,22 @@ async function crud(callback: (collection: Collection<Document>) => unknown) {
  *  Get the feedbacks
  * @returns 10 feedbacks
  */
-export async function GET() {
+export async function GET(req: NextRequest) {
     try {
+        const { searchParams } = new URL(req.url);
+
+        const feedbackId = searchParams.get("feedbackId");
+
+        if (feedbackId) {
+            const objId = new ObjectId(feedbackId);
+            const feedback = await crud(
+                async (collection) =>
+                    await collection.find({ _id: objId }).toArray()
+            );
+
+            return NextResponse.json(feedback);
+        }
+
         const feedbacks = await crud(
             async (collection) => await collection.find().limit(10).toArray()
         );

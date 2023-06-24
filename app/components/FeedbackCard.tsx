@@ -5,9 +5,7 @@ import { memo } from "react";
 import { FaComment } from "react-icons/fa";
 import { IoIosArrowUp } from "react-icons/io";
 import { Comment } from "../page";
-import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
-import { setFeedback } from "../redux/slices/feedbackSlice";
 
 interface Props {
     _id: string;
@@ -19,7 +17,6 @@ interface Props {
 }
 
 const FeedbackCard = ({ feedback }: { feedback: Props }) => {
-    const dispatch = useDispatch();
     const router = useRouter();
 
     let comments = feedback.comments.length;
@@ -28,7 +25,6 @@ const FeedbackCard = ({ feedback }: { feedback: Props }) => {
     );
 
     const setTargetFeedback = () => {
-        dispatch(setFeedback(feedback));
         router.push(`/${feedback._id}`);
     };
 

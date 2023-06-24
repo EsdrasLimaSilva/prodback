@@ -1,37 +1,27 @@
-"use client";
-
-import { useSelector } from "react-redux";
-import { selectFeddback } from "../redux/slices/feedbackSlice";
 import FeedbackCard from "../components/FeedbackCard";
+import { Feedbck } from "../redux/slices/feedbackSlice";
 
 import styles from "@/styles/innerpage.module.scss";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
-export default function FeedPage({
+export default async function InnerPage({
     params,
 }: {
     params: { feedbackId: string };
 }) {
-    const { feedback } = useSelector(selectFeddback);
-    const router = useRouter();
+    const response = await fetch(
+        `http://localhost:3000/api/feedbacks?feedbackId=${params.feedbackId}`,
+        {
+            cache: "no-cache",
+        }
+    );
+    const feedback: Feedbck[] = await response.json();
 
-    useEffect(() => {
-        console.log(params.feedbackId);
-    }, []);
-
-    if (feedback.title) {
-        return (
-            <>
-                <header></header>
-                <main className={styles.mainContainer}>
-                    <FeedbackCard feedback={feedback} />
-
-                    <section className={styles.commentsSection}></section>
-                </main>
-            </>
-        );
-    }
-
-    router.replace("/");
+    return (
+        <>
+            <header></header>
+            <main className={styles.mainContainer}>
+                <FeedbackCard feedback={feedback[0]} />
+            </main>
+        </>
+    );
 }
