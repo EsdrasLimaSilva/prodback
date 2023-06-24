@@ -1,8 +1,8 @@
-import { Comment } from "@/app/api/route";
 import styles from "@/styles/home.module.scss";
 import { memo } from "react";
 import { FaComment } from "react-icons/fa";
 import { IoIosArrowUp } from "react-icons/io";
+import { Comment } from "../page";
 
 interface Props {
     _id: string;
