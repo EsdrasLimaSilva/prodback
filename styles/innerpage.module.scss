@@ -1,4 +1,48 @@
+@import "./variables.module.scss";
+
 .mainContainer {
     max-width: 900px;
     margin: 0 auto;
+}
+
+.commentsSection {
+    width: 100%;
+    background-color: $white;
+    margin-top: 32px;
+    padding: 32px;
+    border-radius: $radius-sm;
+    box-shadow: $shadow-sm;
+}
+
+.commentCard {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 8px;
+    border-bottom: 1px solid $gray;
+    padding-bottom: 16px;
+
+    img {
+        border-radius: 100%;
+    }
+}
+
+.commentContent {
+    h2 {
+        font-size: 1rem;
+        color: $dark-purple;
+    }
+
+    h3 {
+        font-weight: normal;
+        color: $dark-gray;
+        font-size: 0.9rem;
+        margin-top: 4px;
+    }
+
+    p {
+        font-size: 1rem;
+        color: $darker-gray;
+        margin-top: 16px;
+        line-height: 28px;
+    }
 }

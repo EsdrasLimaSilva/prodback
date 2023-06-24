@@ -6,6 +6,10 @@ import FeedbackList from "./components/FeedbackList";
 export interface Comment {
     id: string;
     content: string;
+    user: {
+        name: string;
+        lastname: string;
+    };
     username: string;
     imageurl: string;
     replies: Comment[];
