@@ -1,7 +1,7 @@
-import FeedbackCard from "@/app/components/FeedbackCard";
 import styles from "@/styles/home.module.scss";
 import MenuTags from "./components/MenuTags";
 import { ObjectId } from "mongodb";
+import FeedbackList from "./components/FeedbackList";
 
 export interface Comment {
     id: string;
@@ -42,16 +42,7 @@ export default async function Home() {
                     <h2>{feedbacks.length} suggestions</h2>
                 </header>
                 <main>
-                    {feedbacks.map((fbck) => {
-                        const feed = { ...fbck, _id: String(fbck._id) };
-
-                        return (
-                            <FeedbackCard
-                                key={String(fbck._id)}
-                                feedback={feed}
-                            />
-                        );
-                    })}
+                    <FeedbackList feedbacks={feedbacks} />
                 </main>
             </section>
         </main>

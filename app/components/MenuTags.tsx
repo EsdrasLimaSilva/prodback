@@ -7,12 +7,12 @@ export default function MenuTags() {
     return (
         <div className={styles.menuCateogories}>
             <ul>
-                <TagItem tag="All" />
-                <TagItem tag="UI" />
-                <TagItem tag="UX" />
-                <TagItem tag="Enhancement" />
-                <TagItem tag="Bug" />
-                <TagItem tag="Feature" />
+                <TagItem tag="all" />
+                <TagItem tag="ui" />
+                <TagItem tag="ux" />
+                <TagItem tag="enhancement" />
+                <TagItem tag="bug" />
+                <TagItem tag="feature" />
             </ul>
         </div>
     );
