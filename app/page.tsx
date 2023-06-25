@@ -4,6 +4,10 @@ import { ObjectId } from "mongodb";
 import FeedbackList from "./components/FeedbackList";
 import { Reply } from "./redux/slices/feedbackSlice";
 
+import { HiLightBulb } from "react-icons/hi";
+import { ChangeEvent } from "react";
+import SelectOrder from "./components/SelectOrder";
+
 export interface Comment {
     id: string;
     content: string;
@@ -23,6 +27,7 @@ export interface Feedback {
     tags: string[];
     comments: Comment[];
     ups: number;
+    date: string;
 }
 
 export default async function Home() {
@@ -44,7 +49,14 @@ export default async function Home() {
 
             <section className={styles.feedSection}>
                 <header className={styles.feedbacksHeader}>
-                    <h2>{feedbacks.length} suggestions</h2>
+                    <span>
+                        <HiLightBulb />
+                        <h2>{feedbacks.length} suggestions</h2>
+                    </span>
+
+                    <SelectOrder />
+
+                    <button type="button">Add Feedback</button>
                 </header>
                 <main>
                     <FeedbackList feedbacks={feedbacks} />

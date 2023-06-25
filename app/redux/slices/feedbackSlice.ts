@@ -21,6 +21,7 @@ export interface Feedbck {
     tags: string[];
     comments: Comment[];
     ups: number;
+    date: string;
 }
 
 interface Props {
@@ -35,6 +36,7 @@ const initialState: Props = {
         tags: [],
         comments: [],
         ups: 0,
+        date: "",
     },
 };
 

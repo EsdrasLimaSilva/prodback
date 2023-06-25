@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { Comment } from "../page";
 
 import styles from "@/styles/innerpage.module.scss";
 import { Reply } from "../redux/slices/feedbackSlice";
@@ -18,10 +17,16 @@ export default function ReplyCard({ reply }: { reply: Reply }) {
                 />
             </span>
             <span className={styles.commentContent}>
-                <h2>
-                    {reply.user.name} {reply.user.lastname}
-                </h2>
-                <h3>{reply.username}</h3>
+                <header>
+                    <span>
+                        <h2>
+                            {reply.user.name} {reply.user.lastname}
+                        </h2>
+                        <h3>{reply.username}</h3>
+                    </span>
+
+                    <button type="button">Reply</button>
+                </header>
                 <p>
                     <strong>{reply.replyto}</strong> {reply.content}
                 </p>

@@ -2,7 +2,6 @@
 
 .header {
     @include FLEX(column, flex-start, center, 24px);
-    position: relative;
 }
 
 .logo {
@@ -66,14 +65,38 @@
     padding: 0px 8px 24px 8px;
 
     header {
+        @include FLEX(row, space-between, center);
         background: $dark-purple;
         border-radius: $radius-sm;
         color: $white;
         font-weight: bold;
         margin-bottom: 8px;
-        padding: 8px 24px;
+        padding: 20px 16px;
 
         h2 {
+            font-weight: bold;
+        }
+
+        span {
+            @include FLEX(row, flex-start, center, 12px);
+            svg {
+                font-size: 1.5rem;
+            }
+        }
+
+        button {
+            border: none;
+            background-color: $purple;
+            padding: 8px 16px;
+            font-weight: bold;
+            color: $white;
+            border-radius: $radius-sm;
+        }
+
+        select {
+            background-color: transparent;
+            border: none;
+            color: $white;
             font-weight: bold;
         }
     }
@@ -144,5 +167,69 @@
 
     svg {
         color: $gray;
+    }
+}
+
+.modalContainer {
+    @include FLEX(column, center, center);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: $transparent;
+
+    form {
+        @include FLEX(column, center, center, 20px);
+        background-color: $white;
+        padding: 16px;
+        border-radius: $radius-sm;
+        width: 100%;
+        max-width: 400px;
+
+        p {
+            font-weight: bold;
+            color: $orange;
+            font-size: 1.1rem;
+        }
+
+        h3 {
+            font-weight: normal;
+            font-size: 1rem;
+        }
+
+        & > label {
+            @include FLEX(column, center, flex-start, 8px);
+            width: 100%;
+
+            input {
+                width: 100%;
+                padding: 8px;
+                background-color: $light-blue;
+                border: none;
+                outline: none;
+            }
+        }
+
+        span {
+            @include FLEX(row, center, center, 8px);
+
+            button {
+                padding: 8px 20px;
+                border: none;
+                font-size: 1.1rem;
+                margin-top: 24px;
+            }
+        }
+
+        div {
+            @include FLEX(column, flex-start, flex-start, 8px);
+            width: 100%;
+            & > label {
+                @include FLEX(row, flex-start, flex-start, 8px);
+                width: 100%;
+            }
+        }
     }
 }
