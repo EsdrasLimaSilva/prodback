@@ -2,7 +2,6 @@
 
 .header {
     @include FLEX(column, flex-start, center, 24px);
-    position: relative;
 }
 
 .logo {
@@ -66,15 +65,32 @@
     padding: 0px 8px 24px 8px;
 
     header {
+        @include FLEX(row, space-between, center);
         background: $dark-purple;
         border-radius: $radius-sm;
         color: $white;
         font-weight: bold;
         margin-bottom: 8px;
-        padding: 8px 24px;
+        padding: 20px 16px;
 
         h2 {
             font-weight: bold;
+        }
+
+        span {
+            @include FLEX(row, flex-start, center, 12px);
+            svg {
+                font-size: 1.5rem;
+            }
+        }
+
+        button {
+            border: none;
+            background-color: $purple;
+            padding: 8px 16px;
+            font-weight: bold;
+            color: $white;
+            border-radius: $radius-sm;
         }
     }
 

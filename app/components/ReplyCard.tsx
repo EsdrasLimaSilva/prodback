@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { Comment } from "../page";
 
 import styles from "@/styles/innerpage.module.scss";
 import { Reply } from "../redux/slices/feedbackSlice";
