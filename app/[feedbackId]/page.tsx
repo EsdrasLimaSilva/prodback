@@ -1,6 +1,9 @@
+import Link from "next/link";
 import CommentCard from "../components/CommentCard";
 import FeedbackCard from "../components/FeedbackCard";
 import { Feedbck } from "../redux/slices/feedbackSlice";
+
+import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 
 import styles from "@/styles/innerpage.module.scss";
 
@@ -17,7 +20,14 @@ export default async function InnerPage({
 
     return (
         <>
-            <header></header>
+            <header className={styles.header}>
+                <Link href="/">
+                    <MdOutlineKeyboardArrowLeft />
+                    Go back
+                </Link>
+
+                <button type="button">Edit Feedback</button>
+            </header>
             <main className={styles.mainContainer}>
                 <FeedbackCard feedback={feedback[0]} />
 
