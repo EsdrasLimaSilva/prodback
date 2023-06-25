@@ -1,16 +1,24 @@
 "use client";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Feedback } from "../page";
 import FeedbackCard from "./FeedbackCard";
 import { selectTag } from "../redux/slices/tagSlice";
+import { useEffect } from "react";
+import { pushFeedbcks, selectFeed } from "../redux/slices/feedSlice";
 
 export default function FeedbackList({ feedbacks }: { feedbacks: Feedback[] }) {
+    const { all } = useSelector(selectFeed);
     const { tagsActive } = useSelector(selectTag);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(pushFeedbcks(feedbacks));
+    }, []);
 
     return (
         <>
-            {feedbacks.map((fbck) => {
+            {all.map((fbck) => {
                 const feed = { ...fbck, _id: String(fbck._id) };
                 let included = tagsActive.includes("all");
                 if (!included) {
