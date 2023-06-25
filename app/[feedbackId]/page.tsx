@@ -15,7 +15,9 @@ export default async function InnerPage({
 }) {
     const response = await fetch(
         `http://localhost:3000/api/feedbacks?feedbackId=${params.feedbackId}`,
-        { next: { revalidate: 60 } }
+        {
+            cache: "no-store",
+        }
     );
     const feedback: Feedbck[] = await response.json();
 
@@ -42,7 +44,7 @@ export default async function InnerPage({
                     )}
                 </section>
 
-                <AddCommentCard />
+                <AddCommentCard comments={feedback[0].comments} />
             </main>
         </>
     );

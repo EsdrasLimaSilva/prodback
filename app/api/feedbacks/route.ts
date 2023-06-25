@@ -93,3 +93,24 @@ export async function POST(req: NextRequest) {
         throw err;
     }
 }
+
+export async function PUT(req: NextRequest) {
+    try {
+        const feedbackId = req.nextUrl.searchParams.get("feedbackId");
+        const comments = await req.json();
+
+        revalidateTag(feedbackId!);
+        revalidateTag("feedbacks");
+
+        await crud(async (collection) => {
+            await collection.updateOne(
+                { _id: new ObjectId(feedbackId!) },
+                { $set: { comments: comments } }
+            );
+        });
+
+        return NextResponse.json({ message: "ok" });
+    } catch (err) {
+        throw err;
+    }
+}
