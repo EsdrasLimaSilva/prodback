@@ -2,13 +2,18 @@ import styles from "@/styles/home.module.scss";
 import MenuTags from "./components/MenuTags";
 import { ObjectId } from "mongodb";
 import FeedbackList from "./components/FeedbackList";
+import { Reply } from "./redux/slices/feedbackSlice";
 
 export interface Comment {
     id: string;
     content: string;
+    user: {
+        name: string;
+        lastname: string;
+    };
     username: string;
     imageurl: string;
-    replies: Comment[];
+    replies: Reply[];
 }
 
 export interface Feedback {
