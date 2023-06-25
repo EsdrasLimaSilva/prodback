@@ -5,7 +5,7 @@ import { Feedback } from "../page";
 import FeedbackCard from "./FeedbackCard";
 import { selectTag } from "../redux/slices/tagSlice";
 import { useEffect } from "react";
-import { pushFeedbcks, selectFeed } from "../redux/slices/feedSlice";
+import { setFeedbacks, selectFeed } from "../redux/slices/feedSlice";
 
 export default function FeedbackList({ feedbacks }: { feedbacks: Feedback[] }) {
     const { all } = useSelector(selectFeed);
@@ -13,7 +13,7 @@ export default function FeedbackList({ feedbacks }: { feedbacks: Feedback[] }) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(pushFeedbcks(feedbacks));
+        dispatch(setFeedbacks(feedbacks));
     }, []);
 
     return (

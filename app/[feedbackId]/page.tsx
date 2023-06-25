@@ -33,9 +33,13 @@ export default async function InnerPage({
                 <FeedbackCard feedback={feedback[0]} />
 
                 <section className={styles.commentsSection}>
-                    {feedback[0].comments.map((comment) => (
-                        <CommentCard key={comment.id} comment={comment} />
-                    ))}
+                    {feedback[0].comments.length > 0 ? (
+                        feedback[0].comments.map((comment) => (
+                            <CommentCard key={comment.id} comment={comment} />
+                        ))
+                    ) : (
+                        <p>No comments!</p>
+                    )}
                 </section>
 
                 <AddCommentCard />

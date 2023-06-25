@@ -25,8 +25,8 @@ const feedSlice = createSlice({
     name: "feedSlice",
     initialState,
     reducers: {
-        pushFeedbcks(state, action: PayloadAction<Feedback[]>) {
-            state.all.push(...action.payload);
+        setFeedbacks(state, action: PayloadAction<Feedback[]>) {
+            state.all = [...action.payload];
             orderByDate(state.all);
         },
 
@@ -37,7 +37,7 @@ const feedSlice = createSlice({
     },
 });
 
-export const { pushFeedbcks, orderFeed } = feedSlice.actions;
+export const { setFeedbacks, orderFeed } = feedSlice.actions;
 export const selectFeed = (store: RootState) => store.feed;
 
 export default feedSlice.reducer;
