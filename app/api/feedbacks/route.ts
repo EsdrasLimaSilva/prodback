@@ -85,6 +85,6 @@ export async function POST(req: NextRequest) {
 
         return NextResponse.json({ message: "ok" });
     } catch (err) {
-        console.log(err);
+        throw err;
     }
 }

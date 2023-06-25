@@ -5,8 +5,8 @@ import FeedbackList from "./components/FeedbackList";
 import { Reply } from "./redux/slices/feedbackSlice";
 
 import { HiLightBulb } from "react-icons/hi";
-import { ChangeEvent } from "react";
 import SelectOrder from "./components/SelectOrder";
+import FeedListHeader from "./components/FeedListHeader";
 
 export interface Comment {
     id: string;
@@ -48,16 +48,7 @@ export default async function Home() {
             </header>
 
             <section className={styles.feedSection}>
-                <header className={styles.feedbacksHeader}>
-                    <span>
-                        <HiLightBulb />
-                        <h2>{feedbacks.length} suggestions</h2>
-                    </span>
-
-                    <SelectOrder />
-
-                    <button type="button">Add Feedback</button>
-                </header>
+                <FeedListHeader numOfFeedbacks={feedbacks.length} />
                 <main>
                     <FeedbackList feedbacks={feedbacks} />
                 </main>

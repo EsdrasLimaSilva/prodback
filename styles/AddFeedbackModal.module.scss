@@ -1,0 +1,100 @@
+@import "./variables.module.scss";
+
+.modalContainer {
+    @include FLEX(column, center, center);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: $transparent;
+
+    form {
+        @include FLEX(column, center, center, 20px);
+        background-color: $white;
+        padding: 16px;
+        border-radius: $radius-sm;
+        width: 100%;
+        max-width: 400px;
+
+        p {
+            font-weight: bold;
+            color: $orange;
+            font-size: 1.1rem;
+        }
+
+        h3 {
+            font-weight: normal;
+            font-size: 1rem;
+        }
+
+        & > label {
+            @include FLEX(column, center, flex-start, 8px);
+            width: 100%;
+
+            input {
+                width: 100%;
+                padding: 8px;
+                background-color: $light-blue;
+                border: none;
+                outline: none;
+                font-size: 1rem;
+            }
+        }
+
+        span {
+            @include FLEX(row, center, center, 8px);
+
+            button {
+                padding: 8px 20px;
+                border: none;
+                font-size: 1rem;
+                margin-top: 24px;
+                color: $white;
+                font-weight: bold;
+                border-radius: $radius-sm;
+            }
+
+            button:nth-child(1) {
+                background-color: $dark-gray;
+            }
+
+            button:nth-child(2) {
+                background-color: $dark-purple;
+            }
+        }
+
+        div {
+            @include FLEX(column, flex-start, flex-start, 8px);
+            width: 100%;
+            & > label {
+                @include FLEX(row, flex-start, flex-start, 8px);
+                width: 100%;
+            }
+        }
+    }
+}
+
+.spinner {
+    @include FLEX(column, center, center, 16px);
+    font-weight: bold;
+    font-size: 1.2rem;
+    background-color: $white;
+    padding: 64px;
+    color: $dark-blue;
+    border-radius: $radius-sm;
+
+    svg {
+        animation: spin 1s ease-out infinite;
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

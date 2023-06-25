@@ -1,32 +1,97 @@
 "use client";
 
-import styles from "@/styles/home.module.scss";
-import { ChangeEvent, FormEvent, useRef, useState } from "react";
+import styles from "@/styles/AddFeedbackModal.module.scss";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { Feedbck } from "../redux/slices/feedbackSlice";
 
-export default function AddFeedbackModal() {
-    const [checkedBox, setCheckedBox] = useState(0);
+import { ImSpinner8 } from "react-icons/im";
+
+interface Props {
+    hideModal: () => void;
+}
+
+export default function AddFeedbackModal({ hideModal }: Props) {
+    const [checkedBox, setCheckedBox] = useState<string[]>([]);
     const [tagWarning, setTagWarning] = useState(false);
+    const [postingFeedback, setPostingFeedback] = useState({
+        posting: false,
+        message: "Posting Feedback",
+    });
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
-        if (!checkedBox) {
-            setTagWarning(true);
+        try {
+            if (!checkedBox.length) {
+                setTagWarning(true);
+                setTimeout(() => {
+                    setTagWarning(false);
+                }, 4000);
+            } else {
+                setPostingFeedback((prev) => ({ ...prev, posting: true }));
+
+                const form = e.target as HTMLFormElement;
+                const title = (form[0] as HTMLInputElement).value;
+                const description = (form[1] as HTMLInputElement).value;
+
+                const feedback: Feedbck = {
+                    _id: "",
+                    description,
+                    title,
+                    comments: [],
+                    date: String(new Date()),
+                    tags: [...checkedBox],
+                    ups: 0,
+                };
+
+                await fetch("http://localhost:3000/api/feedbacks", {
+                    method: "Post",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(feedback),
+                });
+
+                setPostingFeedback((prev) => ({
+                    ...prev,
+                    message: "Success!",
+                }));
+            }
+        } catch (err) {
+            setPostingFeedback((prev) => ({
+                ...prev,
+                message: "Something went wrong",
+            }));
+        } finally {
             setTimeout(() => {
-                setTagWarning(false);
-            }, 4000);
-        } else {
-            const form = e.target as HTMLFormElement;
-            console.log(form[0]);
+                hideModal();
+                setPostingFeedback((prev) => ({ ...prev, posting: false }));
+            }, 3000);
         }
     };
 
     const handleCheckboxChange = (e: ChangeEvent) => {
         const box = e.target as HTMLInputElement;
 
-        if (box.checked) setCheckedBox((prev) => prev + 1);
-        else setCheckedBox((prev) => prev - 1);
+        if (box.checked) setCheckedBox((prev) => [...prev, box.value]);
+        else
+            setCheckedBox((prev) => {
+                const newState = prev.filter((tag) => tag != box.value);
+
+                return newState;
+            });
     };
+
+    if (postingFeedback.posting) {
+        return (
+            <div className={styles.modalContainer}>
+                <span className={styles.spinner}>
+                    <p>{postingFeedback.message}</p>
+                    <ImSpinner8 />
+                </span>
+            </div>
+        );
+    }
 
     return (
         <div className={styles.modalContainer}>
@@ -92,7 +157,9 @@ export default function AddFeedbackModal() {
                 </div>
 
                 <span>
-                    <button type="button">Cancel</button>
+                    <button type="button" onClick={hideModal}>
+                        Cancel
+                    </button>
                     <button type="submit">Add</button>
                 </span>
             </form>
