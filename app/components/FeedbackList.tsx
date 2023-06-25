@@ -6,6 +6,7 @@ import FeedbackCard from "./FeedbackCard";
 import { selectTag } from "../redux/slices/tagSlice";
 import { useEffect } from "react";
 import { pushFeedbcks, selectFeed } from "../redux/slices/feedSlice";
+import AddFeedbackModal from "./AddFeedbackModal";
 
 export default function FeedbackList({ feedbacks }: { feedbacks: Feedback[] }) {
     const { all } = useSelector(selectFeed);
@@ -18,6 +19,7 @@ export default function FeedbackList({ feedbacks }: { feedbacks: Feedback[] }) {
 
     return (
         <>
+            <AddFeedbackModal />
             {all.map((fbck) => {
                 const feed = { ...fbck, _id: String(fbck._id) };
                 let included = tagsActive.includes("all");
