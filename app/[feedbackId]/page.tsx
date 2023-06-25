@@ -6,6 +6,7 @@ import { Feedbck } from "../redux/slices/feedbackSlice";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 
 import styles from "@/styles/innerpage.module.scss";
+import AddCommentCard from "../components/AddCommentCard";
 
 export default async function InnerPage({
     params,
@@ -36,6 +37,8 @@ export default async function InnerPage({
                         <CommentCard key={comment.id} comment={comment} />
                     ))}
                 </section>
+
+                <AddCommentCard />
             </main>
         </>
     );
