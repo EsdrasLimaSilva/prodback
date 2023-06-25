@@ -18,10 +18,17 @@ export default function CommentCard({ comment }: { comment: Comment }) {
                 />
             </span>
             <span className={styles.commentContent}>
-                <h2>
-                    {comment.user.name} {comment.user.lastname}
-                </h2>
-                <h3>{comment.username}</h3>
+                <header>
+                    <span>
+                        <h2>
+                            {comment.user.name} {comment.user.lastname}
+                        </h2>
+                        <h3>{comment.username}</h3>
+                    </span>
+
+                    <button type="button">Reply</button>
+                </header>
+
                 <p>{comment.content}</p>
 
                 <div>

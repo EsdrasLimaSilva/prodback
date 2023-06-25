@@ -25,6 +25,18 @@
     img {
         border-radius: 100%;
     }
+
+    header {
+        @include FLEX(row, space-between, flex-end);
+
+        button {
+            background-color: transparent;
+            padding: 8px;
+            color: $dark-blue;
+            border: none;
+            font-weight: 900;
+        }
+    }
 }
 
 .commentContent {
