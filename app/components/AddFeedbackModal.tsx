@@ -44,13 +44,16 @@ export default function AddFeedbackModal({ hideModal }: Props) {
                     ups: 0,
                 };
 
-                await fetch("http://localhost:3000/api/feedbacks", {
-                    method: "Post",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(feedback),
-                });
+                await fetch(
+                    "http://localhost:3000/api/feedbacks?tag=feedbacks",
+                    {
+                        method: "Post",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(feedback),
+                    }
+                );
 
                 setPostingFeedback((prev) => ({
                     ...prev,

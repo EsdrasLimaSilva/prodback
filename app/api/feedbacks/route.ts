@@ -1,5 +1,6 @@
 import clientPromise from "@/lib/mongoClient";
 import { Collection, Document, ObjectId } from "mongodb";
+import { revalidateTag } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuid } from "uuid";
 
@@ -71,6 +72,10 @@ export async function GET(req: NextRequest) {
  */
 export async function POST(req: NextRequest) {
     try {
+        const tag = req.nextUrl.searchParams.get("tag");
+
+        if (tag) revalidateTag(tag);
+
         const feedback = await req.json();
 
         const randomId = uuid().split("-").join("").slice(0, 24);

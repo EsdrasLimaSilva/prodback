@@ -32,7 +32,9 @@ export interface Feedback {
 
 export default async function Home() {
     const response = await fetch("http://localhost:3000/api/feedbacks", {
-        cache: "no-store",
+        next: {
+            tags: ["feedbacks"],
+        },
     });
     const feedbacks: Feedback[] = await response.json();
 

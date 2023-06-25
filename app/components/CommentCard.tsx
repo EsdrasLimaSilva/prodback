@@ -33,7 +33,7 @@ export default function CommentCard({ comment }: { comment: Comment }) {
 
                 <div>
                     {comment.replies.map((reply) => (
-                        <ReplyCard reply={reply} />
+                        <ReplyCard key={reply.id} reply={reply} />
                     ))}
                 </div>
             </span>
