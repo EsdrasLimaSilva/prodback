@@ -11,6 +11,9 @@ interface Props {
     numOfFeedbacks: number;
 }
 
+/*
+This is the header of the feedbackl list. Handle the visibility of the "AddFeedbackModal"
+*/
 export default function FeedListHeader({ numOfFeedbacks }: Props) {
     const [visibleModal, setVisibleModal] = useState(false);
 

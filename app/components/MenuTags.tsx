@@ -3,6 +3,7 @@
 import styles from "@/styles/home.module.scss";
 import TagItem from "./TagItem";
 
+//Contains all tags allowed to be choosen
 export default function MenuTags() {
     return (
         <div className={styles.menuCateogories}>

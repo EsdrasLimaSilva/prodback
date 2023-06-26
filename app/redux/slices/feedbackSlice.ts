@@ -1,28 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import { Comment } from "@/app/page";
-
-export interface Reply {
-    id: string;
-    content: string;
-    user: {
-        name: string;
-        lastname: string;
-    };
-    username: string;
-    imageurl: string;
-    replyto: string;
-}
-
-export interface Feedbck {
-    _id: string;
-    title: string;
-    description: string;
-    tags: string[];
-    comments: Comment[];
-    ups: number;
-    date: string;
-}
+import { Feedbck } from "@/types";
 
 interface Props {
     feedback: Feedbck;

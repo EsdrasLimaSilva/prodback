@@ -1,8 +1,8 @@
 "use client";
 
 import styles from "@/styles/AddFeedbackModal.module.scss";
+import { Feedbck } from "@/types";
 import { ChangeEvent, FormEvent, useState } from "react";
-import { Feedbck } from "../redux/slices/feedbackSlice";
 
 import { ImSpinner8 } from "react-icons/im";
 
@@ -10,6 +10,9 @@ interface Props {
     hideModal: () => void;
 }
 
+/**
+ * This component is the modal that handle the creation of a new feedback. Its visibility is controlled by the "FeedListHeader" component
+ */
 export default function AddFeedbackModal({ hideModal }: Props) {
     const [checkedBox, setCheckedBox] = useState<string[]>([]);
     const [tagWarning, setTagWarning] = useState(false);
@@ -18,22 +21,27 @@ export default function AddFeedbackModal({ hideModal }: Props) {
         message: "Posting Feedback",
     });
 
+    //Post the new feedback on mongoDb
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
         try {
             if (!checkedBox.length) {
+                //if no tags is select, a warning is show on the modal
                 setTagWarning(true);
                 setTimeout(() => {
                     setTagWarning(false);
                 }, 4000);
             } else {
+                //it will be posted if at least one tag is choose by the user
+
                 setPostingFeedback((prev) => ({ ...prev, posting: true }));
 
                 const form = e.target as HTMLFormElement;
                 const title = (form[0] as HTMLInputElement).value;
                 const description = (form[1] as HTMLInputElement).value;
 
+                //creating the new feedback
                 const feedback: Feedbck = {
                     _id: "",
                     description,
@@ -44,6 +52,7 @@ export default function AddFeedbackModal({ hideModal }: Props) {
                     ups: 0,
                 };
 
+                //making the post request. The "tag" param in the url is needed to revalidate the home page beause it's static generated.
                 await fetch(
                     "http://localhost:3000/api/feedbacks?tag=feedbacks",
                     {
@@ -55,17 +64,20 @@ export default function AddFeedbackModal({ hideModal }: Props) {
                     }
                 );
 
+                //if everything goes right, the success message is shown
                 setPostingFeedback((prev) => ({
                     ...prev,
                     message: "Success!",
                 }));
             }
         } catch (err) {
+            //if something goes wrong, the error message is shown
             setPostingFeedback((prev) => ({
                 ...prev,
                 message: "Something went wrong",
             }));
         } finally {
+            //resets the modal visbility and state
             setTimeout(() => {
                 hideModal();
                 setPostingFeedback((prev) => ({ ...prev, posting: false }));
@@ -73,6 +85,7 @@ export default function AddFeedbackModal({ hideModal }: Props) {
         }
     };
 
+    //control what tags are choose by the user
     const handleCheckboxChange = (e: ChangeEvent) => {
         const box = e.target as HTMLInputElement;
 
@@ -85,6 +98,7 @@ export default function AddFeedbackModal({ hideModal }: Props) {
             });
     };
 
+    //if feedback is posting, this spinner will be rendered insted of the form
     if (postingFeedback.posting) {
         return (
             <div className={styles.modalContainer}>

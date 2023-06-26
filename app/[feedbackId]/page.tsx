@@ -1,18 +1,27 @@
+//components
 import Link from "next/link";
 import CommentCard from "../components/CommentCard";
 import FeedbackCard from "../components/FeedbackCard";
-import { Feedbck } from "../redux/slices/feedbackSlice";
-
-import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
-
-import styles from "@/styles/innerpage.module.scss";
 import AddCommentCard from "../components/AddCommentCard";
 
+//icon
+import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
+
+//style
+import styles from "@/styles/innerpage.module.scss";
+
+//types
+import { Feedbck } from "@/types";
+
+/*
+This is the inner page, where user can find the comments and write and replay in a specific feedback. IT receives on param passed in the url (the feedback id). The id is used to fetch the data from mongodb
+*/
 export default async function InnerPage({
     params,
 }: {
     params: { feedbackId: string };
 }) {
+    //fetching the feedback data
     const response = await fetch(
         `http://localhost:3000/api/feedbacks?feedbackId=${params.feedbackId}`,
         {
@@ -21,6 +30,7 @@ export default async function InnerPage({
     );
     const feedback: Feedbck[] = await response.json();
 
+    //rendreing the page
     return (
         <>
             <header className={styles.header}>

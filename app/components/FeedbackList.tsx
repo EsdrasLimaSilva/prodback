@@ -1,12 +1,15 @@
 "use client";
 
 import { useDispatch, useSelector } from "react-redux";
-import { Feedback } from "../page";
 import FeedbackCard from "./FeedbackCard";
 import { selectTag } from "../redux/slices/tagSlice";
 import { useEffect } from "react";
 import { setFeedbacks, selectFeed } from "../redux/slices/feedSlice";
+import { Feedback } from "@/types";
 
+/*
+This component contains all the feedback. It's separeted beacuse the home page is server side rendering, and to allow some features (ass dispatching feedbacks to order) we need the "use client" directive
+*/
 export default function FeedbackList({ feedbacks }: { feedbacks: Feedback[] }) {
     const { all } = useSelector(selectFeed);
     const { tagsActive } = useSelector(selectTag);
