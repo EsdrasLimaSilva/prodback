@@ -1,6 +1,5 @@
 //components
 import Link from "next/link";
-import CommentCard from "../components/CommentCard";
 import FeedbackCard from "../components/FeedbackCard";
 import AddCommentCard from "../components/AddCommentCard";
 
@@ -12,6 +11,7 @@ import styles from "@/styles/innerpage.module.scss";
 
 //types
 import { Feedbck } from "@/types";
+import CommentList from "../components/CommentList";
 
 /*
 This is the inner page, where user can find the comments and write and replay in a specific feedback. IT receives on param passed in the url (the feedback id). The id is used to fetch the data from mongodb
@@ -44,15 +44,7 @@ export default async function InnerPage({
             <main className={styles.mainContainer}>
                 <FeedbackCard feedback={feedback[0]} />
 
-                <section className={styles.commentsSection}>
-                    {feedback[0].comments.length > 0 ? (
-                        feedback[0].comments.map((comment) => (
-                            <CommentCard key={comment.id} comment={comment} />
-                        ))
-                    ) : (
-                        <p>No comments!</p>
-                    )}
-                </section>
+                <CommentList feedback={feedback[0]} />
 
                 <AddCommentCard comments={feedback[0].comments} />
             </main>
