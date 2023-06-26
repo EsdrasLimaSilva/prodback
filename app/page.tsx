@@ -1,38 +1,19 @@
 import styles from "@/styles/home.module.scss";
 import MenuTags from "./components/MenuTags";
-import { ObjectId } from "mongodb";
 import FeedbackList from "./components/FeedbackList";
-import { Reply } from "./redux/slices/feedbackSlice";
 
-import { HiLightBulb } from "react-icons/hi";
-import { ChangeEvent } from "react";
-import SelectOrder from "./components/SelectOrder";
+import FeedListHeader from "./components/FeedListHeader";
+import { Feedback } from "@/types";
 
-export interface Comment {
-    id: string;
-    content: string;
-    user: {
-        name: string;
-        lastname: string;
-    };
-    username: string;
-    imageurl: string;
-    replies: Reply[];
-}
-
-export interface Feedback {
-    _id: ObjectId;
-    title: string;
-    description: string;
-    tags: string[];
-    comments: Comment[];
-    ups: number;
-    date: string;
-}
-
+/*
+Home page
+*/
 export default async function Home() {
+    //get the 10 most recent feedbacks
     const response = await fetch("http://localhost:3000/api/feedbacks", {
-        cache: "no-store",
+        next: {
+            tags: ["feedbacks"],
+        },
     });
     const feedbacks: Feedback[] = await response.json();
 
@@ -48,16 +29,7 @@ export default async function Home() {
             </header>
 
             <section className={styles.feedSection}>
-                <header className={styles.feedbacksHeader}>
-                    <span>
-                        <HiLightBulb />
-                        <h2>{feedbacks.length} suggestions</h2>
-                    </span>
-
-                    <SelectOrder />
-
-                    <button type="button">Add Feedback</button>
-                </header>
+                <FeedListHeader numOfFeedbacks={feedbacks.length} />
                 <main>
                     <FeedbackList feedbacks={feedbacks} />
                 </main>

@@ -2,11 +2,14 @@
 
 import { useDispatch, useSelector } from "react-redux";
 import { addTag, removeTag, selectTag } from "../redux/slices/tagSlice";
-import { useState } from "react";
+import { memo, useState } from "react";
 
 import styles from "@/styles/home.module.scss";
 
-export default function TagItem({ tag }: { tag: string }) {
+/*
+This is the component of all tags shown in the side menu on the home page
+*/
+const TagItem = ({ tag }: { tag: string }) => {
     const { tagsActive } = useSelector(selectTag);
     const [active, setActive] = useState(tagsActive.includes(tag));
     const dispatch = useDispatch();
@@ -23,4 +26,6 @@ export default function TagItem({ tag }: { tag: string }) {
             {tag}
         </li>
     );
-}
+};
+
+export default memo(TagItem);

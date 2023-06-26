@@ -1,11 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { Comment } from "../page";
 
 import styles from "@/styles/innerpage.module.scss";
 import ReplyCard from "./ReplyCard";
+import { Comment } from "@/types";
 
+//This is the comment card, is shown only in the inner page
 export default function CommentCard({ comment }: { comment: Comment }) {
     return (
         <div className={styles.commentCard}>
@@ -33,7 +34,7 @@ export default function CommentCard({ comment }: { comment: Comment }) {
 
                 <div>
                     {comment.replies.map((reply) => (
-                        <ReplyCard reply={reply} />
+                        <ReplyCard key={reply.id} reply={reply} />
                     ))}
                 </div>
             </span>

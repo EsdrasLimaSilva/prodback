@@ -5,6 +5,9 @@ import { useDispatch } from "react-redux";
 import { selectFeddback } from "../redux/slices/feedbackSlice";
 import { orderFeed } from "../redux/slices/feedSlice";
 
+/*
+This the select component to choose the critery of order all the feedbacks on the home page
+*/
 export default function SelectOrder() {
     const dispatch = useDispatch();
 

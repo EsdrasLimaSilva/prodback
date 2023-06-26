@@ -4,19 +4,11 @@ import styles from "@/styles/home.module.scss";
 import { memo } from "react";
 import { FaComment } from "react-icons/fa";
 import { IoIosArrowUp } from "react-icons/io";
-import { Comment } from "../page";
 import { useRouter } from "next/navigation";
+import { Feedbck } from "@/types";
 
-interface Props {
-    _id: string;
-    title: string;
-    description: string;
-    tags: string[];
-    comments: Comment[];
-    ups: number;
-}
-
-const FeedbackCard = ({ feedback }: { feedback: Props }) => {
+//This is where the feedback info is shown
+const FeedbackCard = ({ feedback }: { feedback: Feedbck }) => {
     const router = useRouter();
 
     let comments = feedback.comments.length;
@@ -24,7 +16,8 @@ const FeedbackCard = ({ feedback }: { feedback: Props }) => {
         (comment) => (comments += comment.replies.length)
     );
 
-    const setTargetFeedback = () => {
+    //go to the feedback route (dynamic)
+    const goToFeedback = () => {
         router.push(`/${feedback._id}`);
     };
 
@@ -39,7 +32,7 @@ const FeedbackCard = ({ feedback }: { feedback: Props }) => {
                 <p>{feedback.ups}</p>
             </span>
             <span className={styles.contentContainer}>
-                <h2 onClick={setTargetFeedback}>{feedback.title}</h2>
+                <h2 onClick={goToFeedback}>{feedback.title}</h2>
                 <p>{feedback.description}</p>
                 <span>
                     {feedback.tags.map((tag) => (
