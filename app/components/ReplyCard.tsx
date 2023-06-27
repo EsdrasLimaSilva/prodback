@@ -8,7 +8,15 @@ import { Reply } from "@/types";
 /*
 it's similiar to "CommentCard" component with some different features. It could be fused into one component with the "CommentCard" but i think is cleaner if it's separeted.
 */
-export default function ReplyCard({ reply }: { reply: Reply }) {
+export default function ReplyCard({
+    reply,
+    showModal,
+    commentId,
+}: {
+    reply: Reply;
+    showModal: (commentId: string, replyId?: string) => void;
+    commentId: string;
+}) {
     return (
         <div className={styles.replyCard}>
             <span>
@@ -28,7 +36,12 @@ export default function ReplyCard({ reply }: { reply: Reply }) {
                         <h3>{reply.username}</h3>
                     </span>
 
-                    <button type="button">Reply</button>
+                    <button
+                        type="button"
+                        onClick={() => showModal(commentId, reply.id)}
+                    >
+                        Reply
+                    </button>
                 </header>
                 <p>
                     <strong>{reply.replyto}</strong> {reply.content}

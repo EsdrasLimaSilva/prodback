@@ -2,20 +2,14 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { Feedbck } from "@/types";
 
-interface Props {
-    feedback: Feedbck;
-}
-
-const initialState: Props = {
-    feedback: {
-        _id: "",
-        title: "",
-        description: "",
-        tags: [],
-        comments: [],
-        ups: 0,
-        date: "",
-    },
+const initialState: Feedbck = {
+    _id: "",
+    title: "",
+    description: "",
+    tags: [],
+    comments: [],
+    ups: 0,
+    date: "",
 };
 
 const feedbackSlice = createSlice({
@@ -23,7 +17,7 @@ const feedbackSlice = createSlice({
     initialState,
     reducers: {
         setFeedback(state, action: PayloadAction<Feedbck>) {
-            state.feedback = action.payload;
+            Object.assign(state, action.payload);
         },
     },
 });

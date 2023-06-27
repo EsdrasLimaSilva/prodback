@@ -4,6 +4,7 @@ import tagReducer from "./slices/tagSlice";
 import feedbackReducer from "./slices/feedbackSlice";
 import feedReducer from "./slices/feedSlice";
 import adminReducer from "./slices/adminSlice";
+import replyReducer from "./slices/replySlice";
 
 const store = configureStore({
     reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
         feedback: feedbackReducer,
         feed: feedReducer,
         admin: adminReducer,
+        reply: replyReducer,
     },
 });
 

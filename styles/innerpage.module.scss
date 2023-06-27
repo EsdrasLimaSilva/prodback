@@ -155,6 +155,18 @@
     width: 100vw;
     height: 100vh;
 
+    //spinner
+    div {
+        padding: 32px;
+        background-color: $white;
+        font-size: 1.4rem;
+        border-radius: $radius-sm;
+
+        svg {
+            animation: spin 1s infinite linear;
+        }
+    }
+
     form {
         @include FLEX(column, flex-start, center, 24px);
         padding: 32px;
