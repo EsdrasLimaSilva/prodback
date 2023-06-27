@@ -146,6 +146,79 @@
     }
 }
 
+.addReplyModal {
+    @include FLEX(row, center, center);
+    background-color: $transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    //spinner
+    div {
+        padding: 32px;
+        background-color: $white;
+        font-size: 1.4rem;
+        border-radius: $radius-sm;
+
+        svg {
+            animation: spin 1s infinite linear;
+        }
+    }
+
+    form {
+        @include FLEX(column, flex-start, center, 24px);
+        padding: 32px;
+        background-color: $white;
+        border-radius: $radius-sm;
+        width: 100%;
+        max-width: 500px;
+
+        h3 {
+            font-size: 1.1rem;
+            font-weight: normal;
+        }
+
+        label,
+        textarea {
+            width: 100%;
+        }
+
+        textarea {
+            border: none;
+            padding: 8px 16px;
+            background-color: $light-blue;
+            outline: none;
+            margin-top: 8px;
+            resize: none;
+            height: 160px;
+            font-size: 1rem;
+        }
+
+        span {
+            @include FLEX(row, center, center, 16px);
+        }
+
+        button {
+            padding: 8px 16px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: $white;
+            border: none;
+            border-radius: $radius-sm;
+        }
+
+        button:nth-child(1) {
+            background: $dark-gray;
+        }
+
+        button:nth-child(2) {
+            background: $dark-blue;
+        }
+    }
+}
+
 @keyframes spin {
     from {
         transform: rotate(0deg);
