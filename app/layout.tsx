@@ -14,6 +14,11 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
+                <link
+                    rel="shortcut icon"
+                    href="/icon.png"
+                    type="image/x-icon"
+                />
                 <ReduxProvider>{children}</ReduxProvider>
             </body>
         </html>
