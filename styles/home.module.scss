@@ -290,3 +290,34 @@
         }
     }
 }
+
+@media (max-width: 720px) {
+    .mainContainer {
+        @include FLEX(column, center, center, 16px);
+        padding: 24px;
+    }
+
+    .header {
+        display: grid;
+        grid-template-columns: 240px 1fr;
+        gap: 8px;
+        position: relative;
+        width: 100%;
+    }
+
+    .feedSection {
+        width: 100%;
+        padding: 0px;
+        height: fit-content;
+        max-height: fit-content;
+        padding-bottom: 100px;
+    }
+
+    .feedbackCard {
+        margin: 8px 0;
+    }
+
+    .menuCateogories {
+        height: 100%;
+    }
+}
