@@ -40,6 +40,17 @@
             color: $white;
         }
     }
+
+    button {
+        display: none;
+        background-color: transparent;
+        border: none;
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        font-size: 1.8rem;
+        color: $white;
+    }
 }
 
 .mainContainer {
@@ -167,5 +178,115 @@
 
     svg {
         color: $gray;
+    }
+}
+
+@media (max-width: 480px) {
+    .mainContainer {
+        @include FLEX(column, center, center);
+        padding: 0;
+        gap: 0;
+    }
+
+    .header {
+        position: relative;
+        width: 100%;
+        gap: 0;
+    }
+
+    .logo {
+        border-radius: 0;
+        height: 150px;
+    }
+
+    .feedSection {
+        width: 100%;
+        padding: 0;
+        height: fit-content;
+        max-height: fit-content;
+        padding-bottom: 100px;
+
+        header {
+            width: 100%;
+            border-radius: 0;
+            span {
+                display: none;
+            }
+        }
+    }
+
+    .feedbackCard {
+        display: block;
+        position: relative;
+        width: 90%;
+        margin: 0 auto;
+        padding: 16px 16px 60px 16px;
+
+        h2 {
+            font-size: 1.1rem;
+        }
+
+        p {
+            font-size: 0.88rem;
+        }
+    }
+
+    .upsContainer,
+    .commentsCountContainer {
+        position: absolute;
+        bottom: 16px;
+        gap: 8px;
+    }
+
+    .upsContainer {
+        flex-direction: row;
+        width: 60px;
+        height: 32px;
+        left: 16px;
+    }
+
+    .commentsCountContainer {
+        right: 16px;
+    }
+
+    .contentContainer {
+        width: 100%;
+    }
+
+    .menuCateogories {
+        border-radius: 0;
+        margin-top: 0;
+        transition: all 0.5s ease-in-out;
+        height: 120px;
+        position: absolute;
+        height: 150px;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        background-color: transparent;
+        padding: 0;
+
+        button {
+            display: block;
+        }
+
+        ul {
+            width: 85%;
+            background: $white;
+            height: 100%;
+            padding: 8px;
+            border-top-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            transition: all 0.4s ease-out;
+            justify-content: center;
+            align-items: center;
+            transform: translateX(0);
+        }
+    }
+
+    .hiddenMenu {
+        ul {
+            transform: translateX(-100%);
+        }
     }
 }
