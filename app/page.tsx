@@ -4,13 +4,17 @@ import FeedbackList from "./components/FeedbackList";
 
 import FeedListHeader from "./components/FeedListHeader";
 import { Feedback } from "@/types";
+import { headers } from "next/dist/client/components/headers";
 
 /*
 Home page
 */
 export default async function Home() {
     //get the 10 most recent feedbacks
-    const response = await fetch("http://localhost:3000/api/feedbacks", {
+    const headersList = headers();
+    const domain = headersList.get("host");
+
+    const response = await fetch(`http://${domain}/api/feedbacks`, {
         next: {
             tags: ["feedbacks"],
         },
