@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { Feedbck } from "./feedbackSlice";
+import { Feedbck } from "@/types";
 import { RootState } from "../store";
-import { Feedback } from "@/app/page";
+import { Feedback } from "@/types";
 
 interface Props {
     all: Feedback[];
