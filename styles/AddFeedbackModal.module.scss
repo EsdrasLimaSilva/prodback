@@ -2,13 +2,13 @@
 
 .modalContainer {
     @include FLEX(column, center, center);
-
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
     background-color: $transparent;
+    z-index: 20;
 
     form {
         @include FLEX(column, center, center, 20px);
