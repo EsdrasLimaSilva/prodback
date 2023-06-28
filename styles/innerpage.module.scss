@@ -219,6 +219,20 @@
     }
 }
 
+@media (max-width: 720px) {
+    .commentsSection {
+        border-radius: 0px;
+    }
+
+    .addCommentSection {
+        border-radius: 0px;
+    }
+
+    .header {
+        width: 90vw;
+    }
+}
+
 @keyframes spin {
     from {
         transform: rotate(0deg);
