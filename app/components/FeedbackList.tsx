@@ -6,6 +6,9 @@ import { selectTag } from "../redux/slices/tagSlice";
 import { useEffect } from "react";
 import { setFeedbacks, selectFeed } from "../redux/slices/feedSlice";
 import { Feedback } from "@/types";
+import { ImSpinner10, ImSpinner8 } from "react-icons/im";
+
+import styles from "@/styles/home.module.scss";
 
 /*
 This component contains all the feedback. It's separeted beacuse the home page is server side rendering, and to allow some features (ass dispatching feedbacks to order) we need the "use client" directive
@@ -19,20 +22,34 @@ export default function FeedbackList({ feedbacks }: { feedbacks: Feedback[] }) {
         dispatch(setFeedbacks(feedbacks));
     }, []);
 
-    return (
-        <>
-            {all.map((fbck) => {
-                const feed = { ...fbck, _id: String(fbck._id) };
-                let included = tagsActive.includes("all");
-                if (!included) {
-                    for (let i = 0; i < fbck.tags.length && !included; i++) {
-                        included = tagsActive.includes(fbck.tags.at(i)!);
+    if (all.length) {
+        return (
+            <>
+                {all.map((fbck) => {
+                    const feed = { ...fbck, _id: String(fbck._id) };
+                    let included = tagsActive.includes("all");
+                    if (!included) {
+                        for (
+                            let i = 0;
+                            i < fbck.tags.length && !included;
+                            i++
+                        ) {
+                            included = tagsActive.includes(fbck.tags.at(i)!);
+                        }
                     }
-                }
-                if (!included) return;
+                    if (!included) return;
 
-                return <FeedbackCard key={String(fbck._id)} feedback={feed} />;
-            })}
-        </>
+                    return (
+                        <FeedbackCard key={String(fbck._id)} feedback={feed} />
+                    );
+                })}
+            </>
+        );
+    }
+
+    return (
+        <span className={styles.spinner}>
+            Getting feedbacks <ImSpinner8 />
+        </span>
     );
 }

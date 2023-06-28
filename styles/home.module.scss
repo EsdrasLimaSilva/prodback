@@ -181,6 +181,27 @@
     }
 }
 
+.spinner {
+    @include FLEX(column, center, center, 8px);
+    font-size: 1.4rem;
+    color: $dark-blue;
+    margin: 32px auto;
+    font-weight: bolder;
+
+    svg {
+        animation: spin 0.5s infinite;
+    }
+}
+
+@keyframes spin {
+    from {
+        rotate: 0deg;
+    }
+    to {
+        rotate: 360deg;
+    }
+}
+
 @media (max-width: 480px) {
     .mainContainer {
         @include FLEX(column, center, center);
