@@ -12,6 +12,7 @@ import styles from "@/styles/innerpage.module.scss";
 //types
 import { Feedbck } from "@/types";
 import CommentList from "../components/CommentList";
+import { headers } from "next/dist/client/components/headers";
 
 /*
 This is the inner page, where user can find the comments and write and replay in a specific feedback. IT receives on param passed in the url (the feedback id). The id is used to fetch the data from mongodb
@@ -21,9 +22,12 @@ export default async function InnerPage({
 }: {
     params: { feedbackId: string };
 }) {
+    const headersList = headers();
+    const domain = headersList.get("host");
+
     //fetching the feedback data
     const response = await fetch(
-        `http://localhost:3000/api/feedbacks?feedbackId=${params.feedbackId}`,
+        `http://${domain}/api/feedbacks?feedbackId=${params.feedbackId}`,
         {
             cache: "no-store",
         }
