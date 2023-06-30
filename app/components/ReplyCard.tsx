@@ -18,7 +18,7 @@ export default function ReplyCard({
     commentId: string;
 }) {
     return (
-        <div className={styles.replyCard}>
+        <div data-testid="replycard" className={styles.replyCard}>
             <span>
                 <Image
                     width={50}

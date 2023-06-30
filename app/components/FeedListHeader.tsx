@@ -28,7 +28,10 @@ export default function FeedListHeader({ numOfFeedbacks }: Props) {
     return (
         <>
             {visibleModal && <AddFeedbackModal hideModal={hideModal} />}
-            <header className={styles.feedbacksHeader}>
+            <header
+                data-testid="feedlistheader"
+                className={styles.feedbacksHeader}
+            >
                 <span>
                     <HiLightBulb />
                     <h2>{numOfFeedbacks} suggestions</h2>
