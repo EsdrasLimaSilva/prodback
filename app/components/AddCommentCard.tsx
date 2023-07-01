@@ -84,7 +84,10 @@ export default function AddCommentCard({ comments }: { comments: Comment[] }) {
     };
 
     return (
-        <section className={styles.addCommentSection}>
+        <section
+            data-testid="addcommentcard"
+            className={styles.addCommentSection}
+        >
             <h3>Add Comment</h3>
             <textarea
                 cols={30}
@@ -92,6 +95,7 @@ export default function AddCommentCard({ comments }: { comments: Comment[] }) {
                 placeholder="Type your comment"
                 value={comment}
                 onChange={handleChange}
+                data-testid="textareacomment"
             ></textarea>
 
             <span>
