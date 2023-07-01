@@ -6,7 +6,7 @@ import { selectTag } from "../redux/slices/tagSlice";
 import { useEffect } from "react";
 import { setFeedbacks, selectFeed } from "../redux/slices/feedSlice";
 import { Feedback } from "@/types";
-import { ImSpinner10, ImSpinner8 } from "react-icons/im";
+import { ImSpinner8 } from "react-icons/im";
 
 import styles from "@/styles/home.module.scss";
 

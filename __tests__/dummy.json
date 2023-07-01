@@ -1,0 +1,23 @@
+{
+    "reply": {
+        "id": "12345",
+        "content": "Content",
+        "user": {
+            "name": "user.name",
+            "lastname": "user.lastname"
+        },
+        "username": "@username",
+        "imageurl": "/imageurl",
+        "replyto": "@targetusername"
+    },
+
+    "feedback": {
+        "_id": "ObjectId",
+        "title": "string",
+        "description": "string",
+        "tags": [],
+        "comments": [],
+        "ups": 1,
+        "date": "string"
+    }
+}

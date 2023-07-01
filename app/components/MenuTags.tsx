@@ -2,10 +2,9 @@
 
 import styles from "@/styles/home.module.scss";
 import TagItem from "./TagItem";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 
 import { GiHamburgerMenu } from "react-icons/gi";
-import { GrClose } from "react-icons/gr";
 
 //Contains all tags allowed to be choosen
 export default function MenuTags() {
@@ -18,12 +17,9 @@ export default function MenuTags() {
         }
     };
 
-    useEffect(() => {
-        setTimeout(() => {}, 3000);
-    }, []);
-
     return (
         <div
+            data-testid="menutags"
             ref={menuRef}
             className={`${styles.menuCateogories} ${styles.hiddenMenu}`}
         >

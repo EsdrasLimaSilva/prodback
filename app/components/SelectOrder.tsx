@@ -19,7 +19,11 @@ export default function SelectOrder() {
     };
 
     return (
-        <select defaultValue="date" onChange={orderFeedbacks}>
+        <select
+            data-testid="selecttest"
+            defaultValue="date"
+            onChange={orderFeedbacks}
+        >
             <option value="date">Sort by: most recent</option>
             <option value="ups">Sort by: most ups</option>
         </select>
